@@ -1,0 +1,16 @@
+twitter_api.settings:
+  path: '/admin/config/media/twitter_api'
+  defaults:
+    _form: '\Drupal\twitter_api\Form\SettingsForm'
+    _title: 'Twitter API Settings'
+  requirements:
+    _permission: 'administer twitter_api'
+  options:
+    _admin_route: TRUE
+
+twitter_api.operation.post:
+  path: '/post-to-twitter'
+  defaults:
+    _controller: '\Drupal\twitter_api\Controller\TwitterController::postQuote'
+  requirements:
+    _permission: 'administer twitter_api'

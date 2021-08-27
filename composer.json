@@ -1,0 +1,12 @@
+{
+    "name": "nloewen/twitter_api",
+    "require": {
+        "abraham/twitteroauth": "^1.2"
+    },
+    "authors": [
+        {
+            "name": "Nils Loewen",
+            "email": "nloewen@acromedia.com"
+        }
+    ]
+}

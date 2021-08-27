@@ -1,0 +1,6 @@
+administer twitter_api:
+  title: 'Administer Twitter API Settings'
+  description: 'Connect to Twittter API and upload personal content'
+view twitter_api:
+  title: 'View Twitter API Posts'
+  description: 'Authorize site visitors to see Twitter Posts.'

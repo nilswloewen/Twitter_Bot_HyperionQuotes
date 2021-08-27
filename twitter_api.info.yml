@@ -1,0 +1,6 @@
+name: 'Twitter API'
+description: 'Interface for Twitter.'
+core: 8.x
+type: module
+package: Media
+configure: twitter_api.settings.yml

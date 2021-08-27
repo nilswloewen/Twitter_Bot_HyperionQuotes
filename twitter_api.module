@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * @file
+ */
+
+/**
+ * Implements hook_entity_operation_alter().
+ */
+
+use Drupal\twitter_api\Controller\TwitterController;
+use Drupal\Core\Url;
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_entity_operation_alter().
+ *
+ * Add 'Post to Twitter' button to book_quote operations.
+ */
+function twitter_api_entity_operation_alter(array &$operations, EntityInterface $entity) {
+  $entityTypeId = $entity->getEntityTypeId();
+  if ($entityTypeId !== 'node') {
+    return;
+  }
+
+  $nodeType = $entity->getType();
+  $nodeId = $entity->id();
+  if ($nodeType === 'book_quote') {
+    // Add custom operation.
+    $editUrl = Url::fromRoute('twitter_api.operation.post', ['node_id' => $nodeId]);
+    $operations['post_to_twitter'] = [
+      'title' => t('Post to Twitter'),
+      'weight' => 20,
+      'url' => $editUrl,
+    ];
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function twitter_api_cron() {
+  $controller = new TwitterController(
+    Drupal::service('entity.manager'),
+    Drupal::service('file_system'),
+    Drupal::service('logger.factory')->get('action')
+  );
+  $controller->postNext();
+}
